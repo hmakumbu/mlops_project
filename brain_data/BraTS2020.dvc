@@ -1,0 +1,6 @@
+outs:
+- md5: d658a0b0d2fda18190365604eb3b4185.dir
+  size: 42804711350
+  nfiles: 2350
+  hash: md5
+  path: BraTS2020
