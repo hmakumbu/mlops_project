@@ -1,0 +1,5 @@
+/project1/.venv/
+/project2/.venv/
+.dvc/tmp/
+.dvc/cache/
+.DS_Store
