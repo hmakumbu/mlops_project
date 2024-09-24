@@ -1,0 +1,6 @@
+streamlit 
+fastapi
+fastapi[standard] 
+dvc 
+dvc[azure]
+azure-storage-blob
