@@ -1,12 +1,11 @@
 
-from project2.app.eda import DataGenerator
-from project2.app.load_data import Datasource
-from project2.app.model import Unet
+from project2.backend.app.eda import DataGenerator
+from project2.backend.app.load_data import Datasource
+from project2.backend.app.model import Unet
 
 import os
 
 from dotenv import load_dotenv
-
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report

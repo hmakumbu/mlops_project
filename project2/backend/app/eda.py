@@ -4,34 +4,13 @@ from dotenv import load_dotenv
 
 import os
 import cv2
-import random
-import glob
-import PIL
-import shutil
 import numpy as np
-import pandas as pd
-import matplotlib
 import matplotlib.pyplot as plt
-from skimage import data
-from skimage.util import montage
-import skimage.transform as skTrans
-from skimage.transform import rotate
-from skimage.transform import resize
-from PIL import Image, ImageOps
 import nibabel as nib
 import keras
-# import keras.backend as K
-import tensorflow.keras.backend as K
-from keras.callbacks import CSVLogger
-import tensorflow as tf
-from tensorflow.keras.utils import plot_model
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
 from tensorflow.keras.models import *
 from tensorflow.keras.layers import *
 from tensorflow.keras.optimizers import *
-from tensorflow.keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping, TensorBoard
 
 
 # Define seg-areas
@@ -138,6 +117,3 @@ class DataGenerator(keras.utils.Sequence):
         plt.show()
 
 
-# training_generator = DataGenerator(train_ids)
-# valid_generator = DataGenerator(val_ids)
-# test_generator = DataGenerator(test_ids)
