@@ -142,3 +142,6 @@ jupyter/test_pipeline/*
 
 # every .whl files
 *.whl
+
+# To ignore my virtual enviroment
+env_seg/
