@@ -1,9 +1,0 @@
-dvc==3.55.2
-kaggle==1.6.17
-python-dotenv==1.0.1
-streamlit 
-fastapi
-fastapi[standard] 
-dvc 
-dvc[azure]
-azure-storage-blob
