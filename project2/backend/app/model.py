@@ -19,12 +19,13 @@ from tensorflow.keras.layers import *
 from tensorflow.keras.optimizers import *
 from tensorflow.keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping, TensorBoard
 
-from project2.backend.app.metrics import dice_coef, precision, sensitivity, specificity, dice_coef_necrotic, dice_coef_edema, dice_coef_enhancing
+from backend.app.metrics import dice_coef, precision, sensitivity, specificity, dice_coef_necrotic, dice_coef_edema, dice_coef_enhancing
 
 load_dotenv()
 # Get the base directory from the .env file
 MODELS_DIR = os.getenv('MODELS_DIR')
 TRAIN_DATASET_PATH = os.getenv('DATASET_BASE_PATH')
+MODELS_DIR = os.getenv('MODELS_DIR')
 
 VOLUME_SLICES = 100
 VOLUME_START_AT = 22 # first slice of volume that we will include
@@ -100,9 +101,11 @@ class Unet:
         self.model.compile(loss=loss,
                            optimizer=keras.optimizers.Adam(learning_rate=self.learning_rate),
                            metrics=metrics)
+        
 
     def plot_model(self, file_path='unet_model.png'):
-        plot_model(self.model, show_shapes=True, show_layer_names=True, to_file=file_path)
+        plot_model(self.model, show_shapes=True, show_layer_names=True, to_file=MODELS_DIR + file_path)
+        # print("Successfully Completed!") 
 
     def train(self, training_generator, validation_generator, epochs=35, train_ids=None):
         
@@ -197,7 +200,7 @@ class Unet:
     
     def showPredictsById(self, case, start_slice=60):
         """Visualizes the predicted segmentation for a given case."""
-        path = f"/home/jupyter/BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_{case}"
+        path = f"{TRAIN_DATASET_PATH}/BraTS20_Training_{case}"
         gt = nib.load(os.path.join(path, f'BraTS20_Training_{case}_seg.nii')).get_fdata()
         origImage = nib.load(os.path.join(path, f'BraTS20_Training_{case}_flair.nii')).get_fdata()
         p = self.predictByPath(path, case)
@@ -251,7 +254,7 @@ class Unet:
         seg = nib.load(seg_path).get_fdata()
 
         # Resize the ground truth segmentation to match the prediction dimensions
-        seg = cv2.resize(seg[:, :, slice_to_plot + self.volume_start_at], (self.img_size, self.img_size), interpolation=cv2.INTER_NEAREST)
+        seg = cv2.resize(seg[:, :, slice_to_plot + VOLUME_START_AT], (self.img_size, self.img_size), interpolation=cv2.INTER_NEAREST)
 
         # Extract the different segmentation classes from the predicted segmentation
         all_classes = predicted_seg[slice_to_plot, :, :, 1:4]  # Core, Edema, Enhancing (excluding class 0)
