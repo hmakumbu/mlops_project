@@ -1,0 +1,4 @@
+/project-1/.venv/
+/project-2/.venv/
+.dvc/tmp/
+.dvc/cache/

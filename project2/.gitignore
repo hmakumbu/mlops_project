@@ -142,3 +142,10 @@ jupyter/test_pipeline/*
 
 # every .whl files
 *.whl
+
+# To ignore my virtual enviroment
+env_seg/
+
+# Ignore the model
+/modelops/unet_models
+../.DS_Store
