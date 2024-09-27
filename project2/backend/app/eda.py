@@ -1,5 +1,5 @@
 
-from kaggle.api.kaggle_api_extended import KaggleApi
+from backend.app.config import IMG_SIZE, VOLUME_SLICES, VOLUME_START_AT
 from dotenv import load_dotenv
 
 import os
@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import nibabel as nib
+import tensorflow as tf
 import keras
 from tensorflow.keras.models import *
 from tensorflow.keras.layers import *
@@ -22,18 +23,18 @@ SEGMENT_CLASSES = {
 }
 
 # Select Slices and Image Size
-VOLUME_SLICES = 100
-VOLUME_START_AT = 22 # first slice of volume that we will include
-IMG_SIZE=128
+# VOLUME_SLICES = 100
+# VOLUME_START_AT = 22 # first slice of volume that we will include
+# IMG_SIZE=128
+
 load_dotenv()
 # From env file
 TRAIN_DATASET_PATH = os.getenv('DATASET_BASE_PATH')
 
 
-
 class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
-    def __init__(self, list_IDs, dim=(IMG_SIZE,IMG_SIZE), batch_size = 1, n_channels = 2, shuffle=True):
+    def __init__(self, list_IDs, dim=(IMG_SIZE, IMG_SIZE), batch_size = 1, n_channels = 2, shuffle=True):
         'Initialization'
         self.dim = dim
         self.batch_size = batch_size
@@ -98,22 +99,6 @@ class DataGenerator(keras.utils.Sequence):
         Y = tf.image.resize(mask, (IMG_SIZE, IMG_SIZE));
         return X/np.max(X), Y
     
-    def display_slice_and_segmentation(flair, t1ce, segmentation):
-        fig, axes = plt.subplots(1, 3, figsize=(10, 5))
 
-        axes[0].imshow(flair, cmap='gray')
-        axes[0].set_title('Flair')
-        axes[0].axis('off')
-
-        axes[1].imshow(t1ce, cmap='gray')
-        axes[1].set_title('T1CE')
-        axes[1].axis('off')
-
-        axes[2].imshow(segmentation) # Displaying segmentation
-        axes[2].set_title('Segmentation')
-        axes[2].axis('off')
-
-        plt.tight_layout()
-        plt.show()
 
 
