@@ -12,5 +12,24 @@
 # Print the generated secret key (for testing)
 # echo "Generated SECRET_KEY: $SECRET_KEY"
 
-fastapi run /app/controller.py --host 0.0.0.0 --port 8000 
-# & sleep 5 && streamlit run /app/app.py --server.port 8501 --server.address 0.0.0.0"
+# fastapi run /app/controller.py --host 0.0.0.0 --port 8000 & sleep 5 && streamlit run /app/app.py --server.port 8501 --server.address 0.0.0.0"
+# fastapi run /app/controller.py --host 0.0.0.0 --port 8000 &
+# sleep 5
+# streamlit run /app/app.py --server.port 8501 --server.address 0.0.0.0
+
+#!/bin/bash
+
+# Start FastAPI with Uvicorn in the background
+fastapi run /app/controller.py  --host 0.0.0.0 --port 8000 &
+sleep 5
+streamlit run /app/test.py --server.port 8501 --server.address 0.0.0.0
+
+#!/bin/bash
+
+# uvicorn controller:app --host 0.0.0.0 --port 8000 &
+# streamlit run test.py --server.port=8501 --server.address=0.0.0.0
+
+
+
+
+
