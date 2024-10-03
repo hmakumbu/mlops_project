@@ -16,6 +16,14 @@ from jwt import PyJWTError
 import sys
 import os
 
+# Initialize the FastAPI application
+app = FastAPI()
+
+
+@app.get('/')
+async def get_hello():
+    return{"User": "Welcome to MLOPS"}
+
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -31,9 +39,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 # Password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-# Initialize the FastAPI application
-app = FastAPI()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -81,11 +86,6 @@ def decode_token(token: str):
 # Load model and processor
 global blipMed 
 blipMed = BlipMed()
-
-
-@app.get('/')
-async def get_hello():
-    return{"User": "Welcome to MLOPS"}
 
 
 @app.post("/token")
