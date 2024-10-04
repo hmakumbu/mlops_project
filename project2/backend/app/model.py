@@ -19,7 +19,11 @@ from tensorflow.keras.layers import *
 from tensorflow.keras.optimizers import *
 from tensorflow.keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping, TensorBoard
 
-from app.metrics import dice_coef, precision, sensitivity, specificity, dice_coef_necrotic, dice_coef_edema, dice_coef_enhancing
+from backend.app.metrics import dice_coef, dice_coef_edema, dice_coef_enhancing, dice_coef_necrotic, precision, sensitivity, specificity
+
+# from metrics import dice_coef, dice_coef_edema, dice_coef_enhancing, dice_coef_necrotic, precision, sensitivity, specificity
+
+# from metrics import (dice_coef, precision, sensitivity, specificity, dice_coef_necrotic, dice_coef_edema, dice_coef_enhancing)
 
 load_dotenv()
 # Get the base directory from the .env file

@@ -5,7 +5,7 @@ streamlit
 fastapi
 fastapi[standard] 
 dvc 
-dvc[azure]
+# dvc[azure]
 azure-storage-blob
 
 # Requirements for data and model training process

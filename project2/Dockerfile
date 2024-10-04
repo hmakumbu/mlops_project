@@ -21,8 +21,8 @@ COPY /backend/app /app
 # Set up environment variables for Azure authentication
 # These variables should be set as secrets in CI/CD pipelines
 # or Docker compose files, not hardcoded in the Dockerfile
-ENV AZURE_STORAGE_ACCOUNT=<your-azure-storage-account>
-ENV AZURE_STORAGE_KEY=<your-azure-storage-key>
+# ENV AZURE_STORAGE_ACCOUNT=<your-azure-storage-account>
+# ENV AZURE_STORAGE_KEY=<your-azure-storage-key>
 
 # Pull the dataset tracked by DVC
 RUN dvc pull
